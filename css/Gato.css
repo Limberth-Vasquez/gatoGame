@@ -1,0 +1,42 @@
+.row {
+    display: flex;
+    justify-content: center;
+    height: 150px;
+}
+.fieldset{
+    width: 180px;
+    margin: 10px auto;
+}
+button:hover {
+    cursor: pointer;
+    background-color: rgba(127, 255, 212, 0.192);
+}
+
+.btns {
+    width: 150px;
+    height: 150px;
+    font-size: 50px;
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+.titulo {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+.reset {
+    margin: auto;
+    display: block;
+    background-color: transparent;
+    border: 1px solid black;
+    font-size: 25px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.ganador {
+    background-color: aquamarine;
+    color: brown;
+    transition: background-color 5s, color 4s;
+}
