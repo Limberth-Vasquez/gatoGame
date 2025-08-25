@@ -1,0 +1,479 @@
+/* Variables CSS para consistencia */
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    --accent-color: #06b6d4;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-game: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-light: #ffffff;
+    
+    --border-radius: 12px;
+    --border-radius-lg: 20px;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+    
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-game);
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header del juego */
+.game-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.titulo {
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.game-header .titulo {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.turn-indicator {
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--accent-color);
+    margin-top: 1rem;
+}
+
+.turno-actual {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Contenedor principal del juego */
+.game-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Sección de controles */
+.controls-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilos para las filas del tablero (tu JS las crea) */
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.row:last-child {
+    margin-bottom: 0;
+}
+
+/* Estilos para los botones del juego (tu clase .btns) */
+.btns {
+    width: clamp(100px, 15vw, 140px);
+    height: clamp(100px, 15vw, 140px);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.btns::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.btns:hover::before {
+    left: 100%;
+}
+
+.btns:hover {
+    background: linear-gradient(135deg, rgba(127, 255, 212, 0.3), rgba(127, 255, 212, 0.1));
+    border-color: var(--success-color);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.btns:active {
+    transform: translateY(-1px) scale(1.01);
+}
+
+.btns:disabled {
+    cursor: not-allowed;
+}
+
+/* Estilos específicos para X y O */
+.btns:not(:empty) {
+    animation: cellFill 0.3s ease-out;
+}
+
+@keyframes cellFill {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Botón de reset */
+.reset {
+    margin: 0 auto;
+    display: block;
+    background: linear-gradient(135deg, var(--warning-color), #fbbf24);
+    border: none;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-weight: 600;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reset:hover {
+    background: linear-gradient(135deg, #d97706, var(--warning-color));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.reset:active {
+    transform: translateY(0);
+}
+
+/* Clase ganador (tu JS la usa) */
+.ganador {
+    background: linear-gradient(135deg, var(--success-color), #34d399) !important;
+    color: white !important;
+    border-color: var(--success-color) !important;
+    animation: winnerPulse 1s ease-in-out infinite alternate;
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.6) !important;
+}
+
+@keyframes winnerPulse {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    100% {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+    }
+}
+
+/* Sección del marcador */
+.scoreboard-section {
+    width: 100%;
+    max-width: 500px;
+}
+
+.fieldset {
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px solid var(--primary-color);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.fieldset legend {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+.scores-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.score-player {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.score-player:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.player-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.score-x {
+    color: var(--danger-color);
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.score-o {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--text-primary);
+  color: white;
+  padding: 3rem 0 1rem;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.footer-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.footer-description {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.footer-container {
+    /* max-width: 1000px; */
+    margin: 0 auto;
+    padding: 20px;
+    /* min-height: 100vh; */
+    display: flex;
+    flex-direction: column;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 1.2rem;
+}
+
+.social-link:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.copyright {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Estados especiales para turnos */
+.turno-actual[style*="color:red"] {
+    background: linear-gradient(135deg, #fee2e2, #fecaca) !important;
+    color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
+    animation: alertPulse 0.5s ease-in-out;
+}
+
+@keyframes alertPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .game-header {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .game-container {
+        gap: 1.5rem;
+    }
+    
+    .scores-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .row {
+        gap: 4px;
+        margin-bottom: 4px;
+    }
+    
+    .btns {
+        width: clamp(80px, 20vw, 100px);
+        height: clamp(80px, 20vw, 100px);
+        font-size: clamp(2rem, 10vw, 3rem);
+        border-width: 2px;
+    }
+    
+    .game-header {
+        padding: 1rem;
+    }
+    
+    .fieldset {
+        padding: 1rem;
+    }
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container > * {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.container > *:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.container > *:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* Mejoras para hover en botones generales */
+button:hover {
+    cursor: pointer;
+}
+
+/* Efectos especiales para el tablero completo */
+.row {
+    animation: slideIn 0.8s ease-out forwards;
+}
+
+.row:nth-child(2) { animation-delay: 0.1s; }
+.row:nth-child(3) { animation-delay: 0.2s; }
+.row:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

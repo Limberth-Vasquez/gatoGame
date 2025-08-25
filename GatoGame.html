@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Juego del Gato</title>
+    <link rel="stylesheet" href="./css/GatoGame.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://limberth-vasquez.github.io/assets/img/LimberthLogo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="game-header">
+            <h1 class="titulo">🎮 Bienvenido al juego TIC TAC TOE</h1>
+            <h1 class="main-title">
+                <a href="https://limberth-vasquez.github.io/Ejercicios_JS/index.html" style="color: gray; text-decoration: none;"><i class="fa fa-arrow-left"></i>
+                    Volver</a>
+            </h1>
+            <div class="turn-indicator">
+                <h3 id="turnoDe" class="titulo turno-actual"></h3>
+            </div>
+        </header>
+
+        <main class="game-container">
+            <div class="controls-section">
+                <button onclick="Reset()" class="reset">
+                    🔄 Reiniciar Juego
+                </button>
+            </div>
+
+            <div id="myBody"></div>
+
+            <aside class="scoreboard-section">
+                <fieldset class="fieldset">
+                    <legend>📊 Total de partidas ganadas</legend>
+                    <div class="scores-grid">
+                        <div class="score-player">
+                            <span class="player-icon">❌</span>
+                            <h3 id="X" class="titulo score-x">X: 0</h3>
+                        </div>
+                        <div class="score-player">
+                            <span class="player-icon">⭕</span>
+                            <h3 id="O" class="titulo score-o">O: 0</h3>
+                        </div>
+                    </div>
+                </fieldset>
+            </aside>
+        </main>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-title">Limberth Vásquez Quesada</h3>
+                    <p class="footer-description">Software, Docencia y Música</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.facebook.com/limberth.vasquezquesada/" class="social-link facebook"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/limberth-v%C3%A1squez-490361150/" class="social-link linkedin"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:limberthvaquez@gmail.com" class="social-link email" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright" id="copyright">
+                    © 2024 Limberth Vasquez Quesada. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="./js/Gato2.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
